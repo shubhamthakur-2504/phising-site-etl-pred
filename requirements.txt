@@ -6,3 +6,6 @@ scipy
 matplotlib
 seaborn
 xgboost
+pymongo
+certifi
+-e .
