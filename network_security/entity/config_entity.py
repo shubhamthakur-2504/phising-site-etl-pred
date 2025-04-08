@@ -22,6 +22,6 @@ class DataIngestionConfig:
         self.feature_store_file_path: str = os.path.join(self.data_ingestion_dir,training_pipelline.DATA_INGESTION_FEATURE_STORE_DIR_NAME,training_pipelline.FILE_NAME)
         self.training_file_path: str = os.path.join(self.data_ingestion_dir,training_pipelline.DATA_INGESTION_INGESTED_DIR_NAME,training_pipelline.TRAIN_FILE_NAME)
         self.testing_file_path: str = os.path.join(self.data_ingestion_dir,training_pipelline.DATA_INGESTION_INGESTED_DIR_NAME,training_pipelline.TEST_FILE_NAME)
-        self.train_test_split_ratio: float = training_pipelline.DATA_INGESTION_TRAIN_TEST_SPLIT
+        self.train_test_split_ratio: float = training_pipelline.DATA_INGESTION_TRAIN_TEST_SPLIT_RATION
         self.database_name : str = training_pipelline.DATA_INGESTION_DATABASE_NAME
         self.collection_name : str = training_pipelline.DATA_INGESTION_COLLECTION_NAME
