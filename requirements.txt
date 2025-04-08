@@ -8,4 +8,6 @@ seaborn
 xgboost
 pymongo
 certifi
+dill
+pyyaml
 -e .

@@ -34,3 +34,17 @@ DATA_INGESTION_DIR_NAME = "data_ingestion"
 DATA_INGESTION_FEATURE_STORE_DIR_NAME = "feature_store"
 DATA_INGESTION_INGESTED_DIR_NAME = "ingested"
 DATA_INGESTION_TRAIN_TEST_SPLIT_RATION = 0.2
+
+"""
+
+data_validation constants
+
+"""
+
+DATA_VALIDATION_DIR_NAME = "data_validation"
+DATA_VALIDATION_VALID_DIR_NAME = "validated"
+DATA_VALIDATION_INVALID_DIR_NAME = "invalid"
+DATA_VALIDATION_DRIFT_REPORT_DIR_NAME = "drift_report"
+DATA_VALIDATION_DEIFT_REPORT_FILE_NAME = "report.yaml"
+
+SCHEMA_FILE_PATH = r"data_schema\schema.yaml"
