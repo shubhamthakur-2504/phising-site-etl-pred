@@ -19,7 +19,7 @@ class DataIngestion:
         try:
             self.data_ingestion_config = data_ingestion_config
         except Exception as e:
-            logger.logging.error("Error occured in DataIngestion class", e)
+            logger.logging.error(f"Error occured in DataIngestion class constructor {str(e)}")
             raise NetworkSecurityException(e, sys)
         
 
@@ -38,7 +38,7 @@ class DataIngestion:
             df.replace({"na":np.nan},inplace=True)
             return df
         except Exception as e:
-            logger.logging.error("Error occured in export_collection_as_dataframe class", e)
+            logger.logging.error(f"Error occured in export_collection_as_dataframe class {str(e)}")
             raise NetworkSecurityException(e, sys)
         
     
@@ -51,7 +51,7 @@ class DataIngestion:
             data_frame.to_csv(feature_store_file_path,index=False,header=True)
             return data_frame
         except Exception as e:
-            logger.logging.error("Error occured in export_data_into_feature_store class", e)
+            logger.logging.error(f"Error occured in export_data_into_feature_store class {str(e)}")
             raise NetworkSecurityException(e, sys)
 
     def split_data_as_train_test(self,data_frame: pd.DataFrame):
@@ -66,7 +66,7 @@ class DataIngestion:
             logger.logging.info("Successfully split data into train and test")
             return train_set,test_set
         except Exception as e:
-            logger.logging.error("Error occured in split_data_as_train_test class", e)
+            logger.logging.error(f"Error occured in split_data_as_train_test class {str(e)}")
             raise NetworkSecurityException(e, sys)
 
     def initiate_data_ingestion(self):
@@ -81,6 +81,6 @@ class DataIngestion:
             )
             return data_ingestion_artifact
         except Exception as e:
-            logger.logging.error("Error occured in initiate_data_ingestion class", e)
+            logger.logging.error(f"Error occured in initiate_data_ingestion class {str(e)}")
             raise NetworkSecurityException(e, sys)
 
