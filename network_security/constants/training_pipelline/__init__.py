@@ -8,7 +8,7 @@ import numpy as np
 """  training constants  """
 
 ARTIFACT_DIR = "artifact"
-TARGET_COLUMN = "result"
+TARGET_COLUMN = "Result"
 PIPELINE_NAME = "network_security"
 FILE_NAME = "phisingData.csv"
 
@@ -41,6 +41,7 @@ DATA_VALIDATION_DRIFT_REPORT_FILE_NAME = "report.yaml"
 DATA_TRANSFORMATION_DIR_NAME = "data_transformation"
 DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR = "transformed"
 DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR = "transformed_object"
+PREPROCESSING_OBJECT_FILE_NAME = "preprocessing.pkl"
 
 DATA_TRANSFORMATION_IMPUTER_PARAMS: dict = {
     "missing_values" : np.nan,

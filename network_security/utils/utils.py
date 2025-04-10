@@ -25,6 +25,15 @@ def read_csv_file(file_path: str) -> pd.DataFrame:
         logging.error(f"Error occured in read_csv_file function {str(e)}")
         raise NetworkSecurityException(e, sys)
     
+
+def read_data(file_path: str) -> pd.DataFrame:
+    try:
+        return pd.read_csv(file_path)
+    except Exception as e:
+        logging.error(f"Error occured in read_data function {str(e)}")
+        raise NetworkSecurityException(e, sys)
+
+    
 def write_yaml_file(file_path: str, content: object, replace: bool = False) -> None:
     try:
         if replace:
