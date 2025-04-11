@@ -49,4 +49,17 @@ DATA_TRANSFORMATION_IMPUTER_PARAMS: dict = {
     "weights" : "uniform"
 }
 
+
+""" model_trainer constants  """
+MODEL_TRAINER_DIR_NAME = "model_trainer"
+MODEL_TRAINER_TRAINED_MODEL_DIR = "trained_model"
+MODEL_TRAINER_TRAINED_MODEL_NAME = "model.pkl"
+MODEL_TRAINER_EXPECTED_ACCURACY = 0.6
+MODEL_TRAINER_OVERFITTING_UNDERFITTING_THRESHOLD = 0.05
+
+
+SAVED_MODEL_DIR = "saved_models"
+MODEL_FILE_NAME = "model.pkl"
+
+
 SCHEMA_FILE_PATH = r"data_schema\schema.yaml"

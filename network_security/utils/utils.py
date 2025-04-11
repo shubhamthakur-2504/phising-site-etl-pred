@@ -8,6 +8,7 @@ import yaml
 import dill
 import pickle
 
+# Read functions
 def read_yaml_file(file_path: str) -> dict: 
     try:
         with open(file_path, "rb") as file:
@@ -33,7 +34,31 @@ def read_data(file_path: str) -> pd.DataFrame:
         logging.error(f"Error occured in read_data function {str(e)}")
         raise NetworkSecurityException(e, sys)
 
+
+def load_object(file_path: str) -> object:
+    try:
+        if not os.path.exists(file_path):
+            logging.error(f"File not found at path: {file_path}")
+            raise Exception(f"File not found at path: {file_path}")
+        with open(file_path, "rb") as file:
+            return pickle.load(file)
+    except Exception as e:
+        logging.error(f"Error occured in Load_object function {str(e)}")
+        raise NetworkSecurityException(e, sys)
     
+def load_numpy_array_data(file_path: str) -> np.array:
+    try:
+        if not os.path.exists(file_path):
+            logging.error(f"File not found at path: {file_path}")
+            raise Exception(f"File not found at path: {file_path}")
+        with open(file_path, "rb") as file:
+            return np.load(file)
+    except Exception as e:
+        logging.error(f"Error occured in load_numpy_array_data function {str(e)}")
+        raise NetworkSecurityException(e, sys)
+
+
+# Write functions
 def write_yaml_file(file_path: str, content: object, replace: bool = False) -> None:
     try:
         if replace:
