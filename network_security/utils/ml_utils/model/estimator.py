@@ -13,7 +13,7 @@ class NetworkSecurityModel:
             logging.error(f"Error occured in NetworkSecurityModel class constructor {str(e)}")
             raise NetworkSecurityException(e, sys)
         
-    def predic(self, x):
+    def predict(self, x):
         try:
             x_transformed = self.preprocessor.transform(x)
             y_hat = self.model.predict(x_transformed)
