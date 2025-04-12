@@ -11,6 +11,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier
+import mlflow
 
 
 class ModelTrainer:
@@ -21,6 +22,17 @@ class ModelTrainer:
         except Exception as e:
             logging.error(f"Error occured in ModelTrainer class constructor {str(e)}")
             raise NetworkSecurityException(e, sys)
+        
+    def track_mlflow(self, model_name, classification_report,model):
+        with mlflow.start_run(run_name=model_name):
+            f1_score = classification_report.f1_score
+            precision_score = classification_report.precision_score
+            recall_score = classification_report.recall_score
+            mlflow.set_tag("model_name", model_name)
+            mlflow.log_metric("f1_score", f1_score)
+            mlflow.log_metric("precision_score", precision_score)
+            mlflow.log_metric("recall_score", recall_score)
+            mlflow.sklearn.log_model(model, "model")
         
     def train_model(self, x_train, y_train, x_test, y_test):
         models = {
@@ -69,15 +81,24 @@ class ModelTrainer:
         }
 
         models_report = evaluate_model(x_train, y_train, x_test, y_test, models, params)
+
         best_model_score = max(report.f1_score for report in models_report.values())
+        logging.info(f"Best Model Score: {best_model_score}")
+
         best_model_name = next(name for name, report in models_report.items() if report.f1_score == best_model_score)
+        logging.info(f"Best Model Name: {best_model_name}")
+
         best_model = models[best_model_name]  # Selecting the best model
+
         y_train_pred = best_model.predict(x_train)
         train_metric = get_classification_report(y_true=y_train, y_pred=y_train_pred)
         # track the Mlflow
+        self.track_mlflow(model_name=best_model_name,classification_report=train_metric,model=best_model)
 
         y_test_pred = best_model.predict(x_test)
         test_metric = get_classification_report(y_true=y_test, y_pred=y_test_pred)
+        # track the Mlflow
+        self.track_mlflow(model_name=best_model_name,classification_report=test_metric,model=best_model)
 
         preprocessor = load_object(file_path=self.data_transformation_artifact.transformed_object_file_path)
         model_dir_path = os.path.dirname(self.model_trainer_config.trained_model_file_path)
