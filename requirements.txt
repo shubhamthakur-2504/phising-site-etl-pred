@@ -10,4 +10,5 @@ pymongo
 certifi
 mlflow
 pyyaml
+dagshub
 -e .
