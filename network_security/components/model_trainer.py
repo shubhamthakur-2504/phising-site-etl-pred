@@ -47,36 +47,36 @@ class ModelTrainer:
         params = {
             "Logistic Regression": {
                 'penalty': ['l1', 'l2'],
-                # 'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
+                'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
                 'solver': ['lbfgs', 'liblinear', 'saga'],
             },
             "Decision Tree": {
-                # 'criterion': ['gini', 'entropy', 'log_loss'],
+                'criterion': ['gini', 'entropy', 'log_loss'],
                 'splitter': ['best', 'random'],
                 'max_features': [None, 'sqrt', 'log2'],
             },
             "Gradient Boosting": {
-                # 'learning_rate': [0.1, 0.01, 0.05],
-                # 'subsample': [0.6, 0.7, 0.9],
+                'learning_rate': [0.1, 0.01, 0.05],
+                'subsample': [0.6, 0.7, 0.9],
                 'loss': ['deviance', 'exponential'],
                 'criterion': ['friedman_mse', 'mae'],
                 'max_features': [None, 'sqrt', 'log2'],
-                # 'n_estimators': [8, 16, 32, 64, 128, 256],
+                'n_estimators': [8, 16, 32, 64, 128, 256],
             },
             "Random Forest": {
-                # 'criterion': ['gini', 'entropy', 'log_loss'],
+                'criterion': ['gini', 'entropy', 'log_loss'],
                 'max_features': [None, 'sqrt', 'log2'],
-                # 'n_estimators': [8, 16, 32, 64, 128, 256],
+                'n_estimators': [8, 16, 32, 64, 128, 256],
                 'n_jobs': [-1]
             },
             "KNN": {
-                # 'n_neighbors': [3, 5, 7, 9, 11],
+                'n_neighbors': [3, 5, 7, 9, 11],
                 'weights': ['uniform', 'distance'],
-                # 'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
+                'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
                 'n_jobs': [-1]
             },
             "AdaBoost": {
-                # 'n_estimators': [8, 16, 32, 64, 128, 256],
+                'n_estimators': [8, 16, 32, 64, 128, 256],
                 'learning_rate': [0.1, 0.01, 0.05]
             }
         }
@@ -107,6 +107,7 @@ class ModelTrainer:
 
         Network_Security_Model = NetworkSecurityModel(model=best_model, preprocessor=preprocessor)
         save_object(file_path=self.model_trainer_config.trained_model_file_path, obj=Network_Security_Model)
+        save_object(file_path=r"final_model/model.pkl",obj=best_model)
 
         model_trainer_artifact = ModelTrainerArtifact(
             trained_model_file_path=self.model_trainer_config.trained_model_file_path,

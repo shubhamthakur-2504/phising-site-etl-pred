@@ -70,6 +70,7 @@ class DataTransformation:
             save_numpy_array_data(file_path=self.data_transformation_config.transformed_train_file_path, array=train_arr)
             save_numpy_array_data(file_path=self.data_transformation_config.transformed_test_file_path, array=test_arr)
             save_object(file_path=self.data_transformation_config.transformed_object_file_path, obj=preprocessor_obj)
+            save_object(file_path=r"final_model/preprocessor.pkl", obj=preprocessor_obj)
             logging.info("Preprocessor object, train and test data array saved")
 
             logging.info("Creating data transformation artifact")
